@@ -1,10 +1,7 @@
 ﻿using EmployeeJson;
-using Newtonsoft.Json;
 
 class Program
 {
-    
-    
     static void Main(string[] args)
     {
         if (args.Length == 0)
@@ -12,35 +9,44 @@ class Program
             Console.WriteLine("No arguments was exposed");
             return;
         }
-        var argsProcessor = new ArgsProcessor(args);
-        
+        try
+        {
+            var argsProcessor = new ArgsProcessor(args);
+            switch (argsProcessor.operation)
+            {
+                case Operation.Add:
+                    Console.WriteLine("Adding a record...");
+                    JsonController.Add(argsProcessor);
+                    break;
+                case Operation.Update:
+                    Console.WriteLine("Updating the record...");
+                    JsonController.Update(argsProcessor);
+                    break;
+                case Operation.GetOne:
+                    Console.WriteLine("Getting the record...");
+                    JsonController.GetOne(argsProcessor);
+                    break;
+                case Operation.Delete:
+                    Console.WriteLine("Deleting the record...");
+                    JsonController.Delete(argsProcessor);
+                    break;
+                case Operation.GetAll:
+                    Console.WriteLine("Getting all records");
+                    JsonController.GetAll();
+                    break;
+                default:
+                    Console.WriteLine("Invalid operation type. Somehow.");
+                    return;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return;
+        }
 
-        //switch (args[0])
-        //{
-        //    case "-add":
-        //        Console.WriteLine("add");
-        //        JsonController.Add(args);
-        //        break;
-        //    case "-update":
-        //        Console.WriteLine("update");
-        //        JsonController.Update(args);
-        //        break;
-        //    case "-get":
-        //        Console.WriteLine("get");
-        //        JsonController.Add(args);
-        //        break;
-        //    case "-delete":
-        //        Console.WriteLine("delete");
-        //        JsonController.Add(args);
-        //        break;
-        //    case "-getall":
-        //        Console.WriteLine("getall");
-        //        JsonController.Add(args);
-        //        break;
-        //    default:
-        //        Console.WriteLine("Wrong operation argument");
-        //        return;
-        //}
+
+
 
 
 

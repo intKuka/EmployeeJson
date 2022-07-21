@@ -1,67 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EmployeeJson
 {
+    /// <summary>
+    /// ArgsProcessor is used to separate input arguments and for easier data transffering between Json records and list of C# objects
+    /// </summary>
     internal class ArgsProcessor
     {
-        Operation operation;
-        int id;
-        string firstName = string.Empty;
-        string lastName = string.Empty;
-        decimal salary;
+        public Operation operation;
+        public int id;
+        public string firstName = string.Empty;
+        public string lastName = string.Empty;
+        public decimal? salary;
 
         public ArgsProcessor(string[] args)
         {
-            this.GetArgsValues(args);
+            GetArgsValues(args);
         }
 
         public ArgsProcessor GetArgsValues(string[] args)
         {
             foreach (var arg in args)
-            {
-                switch (arg)
-                {
-                    case "-add":
-                        operation = Operation.Add;
-                        break;
-                    case "-update":
-                        operation = Operation.Update;
-                        break;
-                    case "-delete":
-                        operation = Operation.Delete;
-                        break;
-                    case "-get":
-                        operation = Operation.GetOne;
-                        break;
-                    case "-getall":
-                        operation = Operation.GetAll;
-                        break;
-                    default:
-                        break;
-                }
+            {                
                 if (arg.Contains("Id:"))
                 {
                     id = int.Parse(arg[3..]);
                     Console.WriteLine("id");
+                    continue;
                 }
-                if (arg.Contains("FirstName:"))
+                else if (arg.Contains("FirstName:"))
                 {
                     firstName = arg[10..];
                     Console.WriteLine("FirstName");
+                    continue;
                 }
-                if (arg.Contains("LastName:"))
+                else  if (arg.Contains("LastName:"))
                 {
                     lastName = arg[9..];
                     Console.WriteLine("LastName");
+                    continue;
                 }
-                if (arg.Contains("Salary:"))
+                else if (arg.Contains("Salary:"))
                 {
                     salary = decimal.Parse(arg[7..]);
                     Console.WriteLine("salary");
+                    continue;
+                }
+                else
+                {
+                    operation = arg switch
+                    {
+                        "-add" => Operation.Add,
+                        "-update" => Operation.Update,
+                        "-delete" => Operation.Delete,
+                        "-get" => Operation.GetOne,
+                        "-getall" => Operation.GetAll,
+                        _ => throw new Exception("Wrong operation type"),
+                    };
                 }
             }
 
