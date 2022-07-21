@@ -1,2 +1,2 @@
 Known problem:
-When change the arguments and start the app too quickly (about 5 sec), the program will accomplish the previous operation for some reason.
+When change the arguments via launchSettings.json, the program will accomplish the previous operation for some reason. But after restart with the same arguments everything is okay.
