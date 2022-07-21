@@ -2,7 +2,7 @@
 namespace EmployeeJson
 {
     /// <summary>
-    /// ArgsProcessor is used to separate input arguments and for easier data transffering between Json records and list of C# objects
+    /// ArgsProcessor is used to separate input arguments and an easier way to write data into C# objects from json
     /// </summary>
     public class ArgsProcessor
     {
