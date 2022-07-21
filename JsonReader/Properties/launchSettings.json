@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "JsonReader": {
+      "commandName": "Project",
+      "commandLineArgs": "-add FirstName:Tom LastName:Last Salary:90"
+    }
+  }
+}
