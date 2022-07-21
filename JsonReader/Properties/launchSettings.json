@@ -2,7 +2,7 @@
   "profiles": {
     "JsonReader": {
       "commandName": "Project",
-      "commandLineArgs": "-addd FirstName:first Salary:545"
+      "commandLineArgs": "-add FirstName:first Salary:545"
     }
   }
 }

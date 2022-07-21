@@ -2,7 +2,7 @@
 
 namespace EmployeeJson
 {
-    internal class JsonController
+    public class JsonController
     {
         readonly static string jsonPath = Path.Combine(Environment.CurrentDirectory, @"Json\", "Employees.json");
         static List<EmployeeModel> employees = new();
@@ -96,11 +96,18 @@ namespace EmployeeJson
         }
 
         //returns a boolean value based on id
-        static bool IdExists(IEnumerable<EmployeeModel> employees, int IdToFind)
+        public static bool IdExists(IEnumerable<EmployeeModel> employees, int IdToFind)
         {
-            var employee = employees.Single(e => e.Id == IdToFind);
-            if (employee == null) return false;
-            return true;
+            try
+            {
+                employees.Single(e => e.Id == IdToFind);
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+            
         }
 
         

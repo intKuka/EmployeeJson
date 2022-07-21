@@ -4,7 +4,7 @@ namespace EmployeeJson
     /// <summary>
     /// ArgsProcessor is used to separate input arguments and for easier data transffering between Json records and list of C# objects
     /// </summary>
-    internal class ArgsProcessor
+    public class ArgsProcessor
     {
         public Operation operation;
         public int id;
@@ -24,26 +24,18 @@ namespace EmployeeJson
                 if (arg.Contains("Id:"))
                 {
                     id = int.Parse(arg[3..]);
-                    Console.WriteLine("id");
-                    continue;
                 }
                 else if (arg.Contains("FirstName:"))
                 {
                     firstName = arg[10..];
-                    Console.WriteLine("FirstName");
-                    continue;
                 }
                 else  if (arg.Contains("LastName:"))
                 {
                     lastName = arg[9..];
-                    Console.WriteLine("LastName");
-                    continue;
                 }
                 else if (arg.Contains("Salary:"))
                 {
                     salary = decimal.Parse(arg[7..]);
-                    Console.WriteLine("salary");
-                    continue;
                 }
                 else
                 {
